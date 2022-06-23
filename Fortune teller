@@ -1,0 +1,185 @@
+#################################################
+Fortune Teller
+#################################################
+import random
+
+
+
+
+class Fortuneteller():
+    answers = ["Reply hazy, try again", "Ask again later.",
+               "Better not tell you now.", "Cannot predict now.",
+               "Concentrate and ask again.","Birds are entangled by their feet and men by their tongues."]
+
+    def __init__(self):
+        self.answer = ""
+
+    def set_future(self):
+        self.answer = random.choice(self.answers)
+
+
+    def get_answer(self):
+        return self.answer
+
+    def display(self):
+        print("The spirits say:  ", self.get_answer())
+
+
+
+class Brightfuture(Fortuneteller):
+    bright_future_answers = ["It is certain.", "It is decidedly so.", "Without a doubt.","Yes - definitely.",
+                            "You may rely on it.", "As I see it, yes.",
+                            "Most likely.", "Outlook good.", "Signs point to yes.",
+                            "Yes.", "There are high hopes for your future.",
+                            "There is great love in your future.","Say yes to exciting opportunities."]
+
+
+    def __init__(self):
+        Fortuneteller.__init__(self)
+
+    def set_bright_future_answers(self):
+        for i in self.bright_future_answers:
+            Fortuneteller.answers.append(i)
+            self.answer = random.choice(self.answers)
+
+
+    def get_answer(self):
+        return  self.answer
+
+    def display(self):
+        print("The spirits are smilling...: ", self.get_answer())
+        Fortuneteller.answers = ["Reply hazy, try again", "Ask again later.",
+                                 "Better not tell you now.", "Cannot predict now.",
+                                 "Concentrate and ask again.",
+                                 "Birds are entangled by their feet and men by their tongues."]
+
+
+class Grimfuture(Fortuneteller):
+    grim_future_answers = ["Don't count on it.",
+               "My reply is no.", "My sources say no.",
+               "Outlook not so good.", "Very doubtful."]
+
+    def __init__(self):
+        Fortuneteller.__init__(self)
+
+
+    def set_grim_future_answers(self):
+        for i in self.grim_future_answers:
+            Fortuneteller.answers.append(i)
+            self.answer = random.choice(self.answers)
+
+    def get_answer(self):
+            return self.answer
+
+    def display(self):
+
+        print("The spirits are summoning...they appear in dismay: ", self.get_answer())
+        Fortuneteller.answers = ["Reply hazy, try again", "Ask again later.",
+                           "Better not tell you now.", "Cannot predict now.",
+                           "Concentrate and ask again.",
+                           "Birds are entangled by their feet and men by their tongues."]
+
+
+
+def lucky_numbers():
+
+    lucky_1 = random.randrange(1, 99)
+    lucky_2 = random.randrange(1, 99)
+    lucky_3 = random.randrange(1, 99)
+    lucky_4 = random.randrange(1, 99)
+    lucky_5 = random.randrange(1, 99)
+    lucky_6 = random.randrange(1, 99)
+    lucky_7 = random.randrange(1, 99)
+
+    lucky_list = [lucky_1, lucky_2, lucky_3, lucky_4, lucky_5, lucky_6,lucky_7]
+    print("Your lucky numbers are: ",  lucky_list)
+    return lucky_list
+
+def quit():
+    print("The portal to the unliving has closed.\n")
+    print("For an additional fee, the spirits can help you with an other questions at another time.\n")
+    exit(0)
+def get_choice():
+    while True:
+        try:
+            choice = int(
+                input("\n"
+                      "****** Welcome! I am Madame Louise Savoy de Anjou  ******\n"
+                      
+                    "Cross my palm with silver and I'll tell you your future\n"
+                    
+                    
+
+                      "Tell me. What would like to summon from the the world beyond?:\n"
+                      "  1. Ask a question about your future.\n"
+                      "  2. Lucky numbers\n"
+                      "  3. Exit \n"
+                      "Please enter your choice:  "))
+            return choice
+        except:
+            print("Invalid input")
+def main():
+    while True:
+        future1 = Fortuneteller()
+        future2 = Brightfuture()
+        future3 = Grimfuture()
+        choice = get_choice()
+        print(
+            "As consort to the spirit world, I now commence this séance.\n"
+            " Ploobus, plorum. I now summon the unliving!\n")
+        if choice == 1:
+
+            while True:
+                fortuneList = [0, 1, 2]
+                listIndex = random.randrange(0, 3)
+                fortune = fortuneList[listIndex]
+                if fortune == 0:
+                    future1.set_future()
+                    future1.get_answer()
+                    future1.display()
+                    future1.answers =  ["Reply hazy, try again", "Ask again later.",
+               "Better not tell you now.", "Cannot predict now.",
+               "Concentrate and ask again.","Birds are entangled by their feet and men by their tongues."]
+
+
+                elif fortune == 1:
+                    future2.set_bright_future_answers()
+                    future2.get_answer()
+                    future2.display()
+                    future1.answers = ["Reply hazy, try again", "Ask again later.",
+                                       "Better not tell you now.", "Cannot predict now.",
+                                       "Concentrate and ask again.",
+                                       "Birds are entangled by their feet and men by their tongues."]
+
+                elif fortune == 2:
+                    future3.set_grim_future_answers()
+                    future3.get_answer()
+                    future3.display()
+                    future1.answers = ["Reply hazy, try again", "Ask again later.",
+                                       "Better not tell you now.", "Cannot predict now.",
+                                       "Concentrate and ask again.",
+                                       "Birds are entangled by their feet and men by their tongues."]
+
+
+                break
+
+
+
+        elif choice == 2:
+            while True:
+                lucky_numbers()
+
+                break
+
+        elif choice == 3:
+
+            quit()
+
+        else:
+            print("Invalid choice")
+
+
+
+
+if __name__ == "__main__":
+        main()
